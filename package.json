@@ -1,5 +1,5 @@
 {
-	"name": "typescript-cli-starter",
+	"name": "ts-cli-ollama-human-to-sql",
 	"private": true,
 	"version": "1.0.0",
 	"description": "A simple typescript CLI tool to translate natural human language to SQL with Ollama (Mistral 7B) model",

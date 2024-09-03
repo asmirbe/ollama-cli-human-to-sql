@@ -1,6 +1,6 @@
-# typescript-cli-starter
+# TS-CLI Ollama Human To SQL
 
-A simple and zero-opinion typescript starter template for building cross-platform command line applications.
+A simple typescript CLI tool to translate natural human language to SQL with Ollama (Mistral 7B) model
 
 ## Description
 
