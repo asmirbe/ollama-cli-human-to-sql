@@ -1,20 +1,60 @@
-#!/usr/bin/env node
+import { Command } from 'commander';
+import translateToSQL from './index';
+import { displayHistory } from './history';
 
-import program from 'commander'
+const program = new Command();
 
-import { orderPizza } from './index'
- 
+const frames = ['|', '/', '-', '\\'];
+let i = 0;
+
+function updateSpinner(text: string) {
+	process.stdout.write(`\r${frames[i = ++i % frames.length]} ${text}`);
+}
+
+function clearSpinner() {
+	process.stdout.write('\r\x1b[K');
+}
+
 program
-  .version('0.1.0')
-  .option('-p, --peppers', 'Add peppers')
-  .option('-P, --pineapple', 'Add pineapple')
-  .option('-b, --bbq-sauce', 'Add bbq sauce')
-  .option('-c, --cheese [type]', 'Add the specified type of cheese [marble]', 'marble')
-  .parse(process.argv)
+	.version('0.1.0')
+	.name('htsql')
+	.usage('<query>')
+	.argument('[query]', 'The natural language query to translate to SQL')
+	.option('-s, --schema <schema>', 'Provide a table schema for context')
+	.option('--history', 'Display query history')
+	.action(async (query, options) => {
+		if (options.history) {
+			displayHistory();
+			return;
+		}
 
-orderPizza({
-  peppers: program.peppers,
-  pineapple: program.pineapple,
-  bbqSauce: program.bbqSauce,
-  cheeseType: program.cheese
-}).then(result => console.log(result.message))
+		if (!query) {
+			console.error('Error: Query is required unless using --history option');
+			program.help();
+			return;
+		}
+
+		const spinnerInterval = setInterval(() => updateSpinner('Translating to SQL...'), 100);
+		try {
+			const result = await translateToSQL(query, options.schema);
+			clearInterval(spinnerInterval);
+			clearSpinner();
+			console.log('✔ Translation complete');
+			console.log(`Human language: ${query}`);
+			console.log(`Title: ${result.title}`);
+			console.log('SQL Query:');
+			console.log(result.sql);
+		} catch (error) {
+			clearInterval(spinnerInterval);
+			clearSpinner();
+			console.error('✖ Translation failed');
+			if (error instanceof Error) {
+				console.error('Error:', error.message);
+			} else {
+				console.error('An unexpected error occurred');
+			}
+			process.exit(1);
+		}
+	});
+
+program.parse(process.argv);

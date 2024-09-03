@@ -2,57 +2,92 @@
 
 A simple and zero-opinion typescript starter template for building cross-platform command line applications.
 
-![GitHub package.json dynamic](https://img.shields.io/github/package-json/keywords/khalidx/typescript-cli-starter.svg?style=flat-square)
+## Description
 
-![GitHub](https://img.shields.io/github/license/khalidx/typescript-cli-starter.svg?style=flat-square)
-![GitHub package.json version](https://img.shields.io/github/package-json/v/khalidx/typescript-cli-starter.svg?style=flat-square)
-![GitHub top language](https://img.shields.io/github/languages/top/khalidx/typescript-cli-starter.svg?style=flat-square)
+This project provides a foundation for creating a command-line interface (CLI) application that translates natural language queries into SQL. It uses TypeScript and several popular libraries to offer a robust starting point for CLI development.
 
-![GitHub last commit](https://img.shields.io/github/last-commit/khalidx/typescript-cli-starter.svg?style=flat-square)
+## Features
 
-Includes:
+- Natural language to SQL translation
+- Command-line interface using Commander.js
+- Spinner animation for visual feedback during translation
+- SQL formatting for improved readability
+- Error handling and informative error messages
 
-- [TypeScript](https://www.typescriptlang.org/), for writing good code
-- [Ava](https://www.npmjs.com/package/ava), for writing good tests
-- [Commander](https://www.npmjs.com/package/commander), for building CLI applications
-- [Pkg](https://www.npmjs.com/package/pkg), for building cross-platform native executables
+## Installation
 
-Your application will be installable from `npm` or by sharing your native executables.
+1. Clone the repository:
+   ```
+   git clone https://github.com/your-username/typescript-cli-starter.git
+   cd typescript-cli-starter
+   ```
+
+2. Install dependencies:
+   ```
+   npm install
+   ```
 
 ## Usage
 
-### **dev**
+To run the application in development mode:
 
-`npm run dev`
+```
+npm run dev -- <query> [options]
+```
 
-Runs the CLI application.
+To build and run the application:
 
-You can pass arguments to your application by running `npm run dev -- --your-argument`. The extra `--` is so that your arguments are passed to your CLI application, and not `npm`.
+```
+npm run build
+node ./dist/cli.js <query> [options]
+```
 
-### **clean**
+### Options
 
-`npm run clean`
+- `-s, --schema <schema>`: Provide a table schema for context
+- `-V, --version`: Output the version number
+- `-h, --help`: Display help for command
 
-Removes any built code and any built executables.
+### Example
 
-### **build**
+```
+npm run dev -- "Show me all users who joined last month" -s "Users(id, name, email, join_date)"
+```
 
-`npm run build`
+## Scripts
 
-Cleans, then builds the TypeScript code.
+- `npm run dev`: Run the application in development mode
+- `npm run clean`: Remove build artifacts
+- `npm run build`: Build the application
+- `npm test`: Run tests (currently not implemented)
+- `npm run bundle`: Build and package the application for distribution
 
-Your built code will be in the `./dist/` directory.
+## Dependencies
 
-### **test**
+- commander: For building the command-line interface
+- isomorphic-unfetch: For making HTTP requests
+- log-update: For updating console output
+- ora: For creating spinners
+- sql-formatter: For formatting SQL queries
 
-`npm run test`
+## Dev Dependencies
 
-Cleans, then builds, and tests the built code.
+- pkg: For packaging the application
+- rimraf: For cross-platform directory removal
+- ts-node: For running TypeScript files directly
 
-### **bundle**
+## License
 
-`npm run bundle`
+This project is licensed under the MIT License.
 
-Cleans, then builds, then bundles into native executables for Windows, Mac, and Linux.
+## Author
 
-Your shareable executables will be in the `./exec/` directory.
+Khalid Zoabi <kzoabi@outlook.com>
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## Note
+
+This project uses Ollama API for natural language to SQL translation. Make sure you have Ollama running locally on `http://localhost:11434` with the `mistral` model available.
