@@ -18,7 +18,7 @@ This project provides a foundation for creating a command-line interface (CLI) a
 
 1. Clone the repository:
    ```
-   git clone https://github.com/your-username/typescript-cli-starter.git
+   git clone https://github.com/asmirbe/ollama-cli-human-to-sql.git
    cd typescript-cli-starter
    ```
 
@@ -51,7 +51,7 @@ node ./dist/cli.js <query> [options]
 ### Example
 
 ```
-npm run dev -- "Show me all users who joined last month" -s "Users(id, name, email, join_date)"
+npm run dev -- "Show me all users who joined last month"
 ```
 
 ## Scripts
@@ -59,15 +59,12 @@ npm run dev -- "Show me all users who joined last month" -s "Users(id, name, ema
 - `npm run dev`: Run the application in development mode
 - `npm run clean`: Remove build artifacts
 - `npm run build`: Build the application
-- `npm test`: Run tests (currently not implemented)
 - `npm run bundle`: Build and package the application for distribution
 
 ## Dependencies
 
 - commander: For building the command-line interface
 - isomorphic-unfetch: For making HTTP requests
-- log-update: For updating console output
-- ora: For creating spinners
 - sql-formatter: For formatting SQL queries
 
 ## Dev Dependencies
@@ -79,10 +76,6 @@ npm run dev -- "Show me all users who joined last month" -s "Users(id, name, ema
 ## License
 
 This project is licensed under the MIT License.
-
-## Author
-
-Khalid Zoabi <kzoabi@outlook.com>
 
 ## Contributing
 

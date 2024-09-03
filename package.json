@@ -2,12 +2,11 @@
 	"name": "typescript-cli-starter",
 	"private": true,
 	"version": "1.0.0",
-	"description": "A simple and zero-opinion typescript starter template for building cross-platform command line applications.",
-	"author": "Khalid Zoabi <kzoabi@outlook.com>",
+	"description": "A simple typescript CLI tool to translate natural human language to SQL with Ollama (Mistral 7B) model",
+	"author": "Asmir",
 	"keywords": [
 		"typescript",
-		"cli",
-		"starter"
+		"cli"
 	],
 	"license": "MIT",
 	"main": "./dist/index.js",
@@ -20,7 +19,6 @@
 		"dev": "npx ts-node ./src/cli.ts",
 		"clean": "rimraf ./dist/ ./exec/",
 		"build": "npm run clean && tsc",
-		"test": "ava",
 		"bundle": "npm run build && pkg . --out-dir ./exec/"
 	},
 	"devDependencies": {
@@ -32,8 +30,6 @@
 		"@types/commander": "^2.12.2",
 		"commander": "^12.1.0",
 		"isomorphic-unfetch": "^4.0.2",
-		"log-update": "^6.1.0",
-		"ora": "^8.1.0",
 		"sql-formatter": "^15.4.1",
 		"typescript": "^5.5.4"
 	}
